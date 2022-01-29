@@ -13,27 +13,34 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import analizer.lex.Token.Tipos;
-
+import analizer.lex.DeleteComentario;
+import analizer.lex.contador_lineas;
 /**
  *
  * @author juanp
  */
 public class AnalizerLex {
 
+     static DeleteComentario delComentario = new DeleteComentario();
+    static contador_lineas cont_line = new contador_lineas();
     public static void main(String[] args) throws Exception {
         //Lectura de archivos txt
         FileReader FileReader = new FileReader("leer.txt");
         //Se reconoce el texto para convertirlo en lineas de texto
         Scanner scanner = new Scanner(FileReader);
-        //Se crea un lista de objetos dinamica 
+       
         
+        
+
+        //Se crea un lista de objetos dinamica 
         ArrayList<Token> tokens;
             
         //Se coloca en un ciclo para extraer cada una de las lineas leidas
             while (scanner.hasNextLine()) {
                 //Se manda a llamar la clase que se encargara de reconocer los caracteres
+                    cont_line.setLine();        
                     tokens = lex(scanner.nextLine()); 
-                    
+
                     //Cuando termina el proceso se recorre la lista dinamica
                     for(Token token : tokens){
                         System.out.println(token.getTipos() + " " + token.getValor());
@@ -55,7 +62,7 @@ public class AnalizerLex {
         while(st.hasMoreTokens()) {
             palabra = st.nextToken();
             boolean matched = false;
-
+            cont_line.setword();
 
             for (Tipos tokenTipo : Tipos.values()) {
                 Pattern patron = Pattern.compile(tokenTipo.patron);
@@ -71,9 +78,10 @@ public class AnalizerLex {
             }
 
             if (!matched) {
-                throw new RuntimeException("Se encontró un token invalido.");
+                throw new RuntimeException("Se encontró un token invalido. En la linea " + cont_line.getLine());
             }
         }
+        cont_line.clear_word();
 
         return tokens;   
 }
