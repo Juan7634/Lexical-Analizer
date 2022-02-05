@@ -10,7 +10,7 @@ public class contador_lineas {
         }
 
         public void setLine(){
-            this.line += 1;
+            this.line += 1; 
         }
         
         public void setword(){

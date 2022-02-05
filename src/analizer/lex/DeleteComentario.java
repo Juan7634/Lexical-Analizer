@@ -11,9 +11,6 @@ public class DeleteComentario {
 
         public void setCadena(String cadena) {
             this.cadena = cadena;
-        }
-
-        public String getCadena() {
             if(this.cadena.contains("//")){
                 this.snippet = this.cadena.substring(0, this.cadena.indexOf("//"));
                 this.snippet = this.snippet.trim();
@@ -21,7 +18,10 @@ public class DeleteComentario {
             else{
                 this.snippet = this.cadena;
             }
+        }
 
+        public String getCadena() {
+        
             return this.snippet;
 
         }
