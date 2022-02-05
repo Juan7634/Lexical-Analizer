@@ -19,7 +19,7 @@ import analizer.lex.Token.Tipos;
 
 /**
  *
- * @author juanp
+ * @author Juan Pedro Dominguez Padilla Piter  
  */
 public class AnalizerLex {
 
